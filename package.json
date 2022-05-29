@@ -1,0 +1,40 @@
+{
+  "name": "@ainizoda/react-vform",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/ainizoda"
+  },
+  "version": "1.0.0",
+  "description": "Simple form controller component for react",
+  "scripts": {
+    "rollup": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ainizoda/react-vform.git"
+  },
+  "keywords": [
+    "react",
+    "validation",
+    "form",
+    "validator",
+    "react-form"
+  ],
+  "author": "Abdulmajid Ainizoda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ainizoda/react-vform/issues"
+  },
+  "homepage": "https://github.com/ainizoda/react-vform#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/react": "^18.0.9",
+    "react": "^18.1.0",
+    "rollup": "^2.75.1",
+    "rollup-plugin-dts": "^4.2.2",
+    "typescript": "^4.7.2"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js"
+}
