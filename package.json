@@ -1,6 +1,6 @@
 {
   "name": "formjon",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Simple form controller component for react",
   "scripts": {
     "rollup": "rollup -c"
