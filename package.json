@@ -1,8 +1,5 @@
 {
-  "name": "@ainizoda/react-vform",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/ainizoda"
-  },
+  "name": "formjon",
   "version": "1.0.0",
   "description": "Simple form controller component for react",
   "scripts": {
@@ -17,14 +14,16 @@
     "validation",
     "form",
     "validator",
-    "react-form"
+    "react-form",
+    "formjon",
+    "controller"
   ],
   "author": "Abdulmajid Ainizoda",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ainizoda/react-vform/issues"
   },
-  "homepage": "https://github.com/ainizoda/react-vform#readme",
+  "homepage": "https://github.com/ainizoda/formjon#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
