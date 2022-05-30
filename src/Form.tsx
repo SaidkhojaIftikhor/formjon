@@ -28,6 +28,8 @@ function Form<T>({
   const validate = React.useMemo(
     () =>
       (data: T): boolean => {
+        let hasError = false;
+
         for (let name in data) {
           const validation = validations[name];
 
@@ -36,12 +38,14 @@ function Form<T>({
               validation(data[name]);
             } catch (e: any) {
               setErrors((errors) => ({ ...errors, [name]: e.message }));
+
+              hasError = true;
               continue;
             }
           }
           setErrors({ ...errors, [name]: undefined });
         }
-        return true;
+        return !hasError;
       },
 
     [validations, errors]
