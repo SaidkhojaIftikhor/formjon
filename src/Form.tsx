@@ -9,13 +9,13 @@ interface FormData<T> {
 
 interface FormProps<T> {
   initialData: T;
-  validations: Record<keyof T, (value: T[Extract<keyof T, string>]) => void>;
+  validations: Record<keyof T, (value: T[keyof T]) => void>;
   onSubmit: (data: T) => void;
   onChange?: (data: T) => void;
   children: (formData: FormData<T>) => JSX.Element;
 }
 
-function Form<T>({
+export function Form<T>({
   initialData,
   validations,
   onSubmit,
@@ -35,7 +35,11 @@ function Form<T>({
 
           if (validation) {
             try {
-              validation(data[name]);
+              const err = validation(data[name]);
+
+              if (err === null) {
+                continue;
+              }
             } catch (e: any) {
               setErrors((errors) => ({ ...errors, [name]: e.message }));
 
@@ -43,6 +47,7 @@ function Form<T>({
               continue;
             }
           }
+
           setErrors({ ...errors, [name]: undefined });
         }
         return !hasError;
@@ -55,7 +60,17 @@ function Form<T>({
     event.preventDefault();
 
     if (validate(data)) {
-      onSubmit(data);
+      let filteredData = {} as T;
+
+      for (let name in data) {
+        let value = data[name] as any;
+
+        if (value !== "") {
+          filteredData[name] = data[name];
+        }
+      }
+
+      onSubmit(filteredData);
     }
   };
 
@@ -79,5 +94,3 @@ function Form<T>({
     </form>
   );
 }
-
-export default Form;
