@@ -15,11 +15,12 @@ interface FormProps<T> {
   children: (formData: FormData<T>) => JSX.Element;
 }
 
+
 export function Form<T>({
   initialData,
   validations,
   onSubmit,
-  onChange,
+  onChange = () => {},
   children,
 }: FormProps<T>): JSX.Element {
   const [data, setData] = React.useState<T>(initialData);
@@ -75,13 +76,17 @@ export function Form<T>({
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setData({ ...data, [name]: value });
-
-    if (onChange) {
-      onChange(data);
+    const { name, value,checked,type } = event.target;
+    if(type === "checkbox"){
+      setData((data) => ({ ...data, [name]: checked }));
+    }else{
+      setData({ ...data, [name]: value });
     }
+    onChange(data);
   };
+
+
+ 
 
   return (
     <form onSubmit={handleSubmit}>
