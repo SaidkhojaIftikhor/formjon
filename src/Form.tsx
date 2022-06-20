@@ -5,6 +5,7 @@ interface FormData<T> {
   errors: T;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   validateOnBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onSetField?: (name: string, value: boolean) => void;
 }
 
 interface FormProps<T> {
@@ -19,7 +20,7 @@ export function Form<T>({
   initialData,
   validations,
   onSubmit,
-  onChange,
+  onChange = () => {},
   children,
 }: FormProps<T>): JSX.Element {
   const [data, setData] = React.useState<T>(initialData);
@@ -77,11 +78,14 @@ export function Form<T>({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
-
-    if (onChange) {
-      onChange(data);
-    }
+    onChange(data);
   };
+
+  
+  const handleSetField = (name: string, value: boolean) => {
+    setData({ ...data, [name]: value });
+  }
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -89,6 +93,7 @@ export function Form<T>({
         values: data,
         errors,
         onChange: handleChange,
+        onSetField: handleSetField,
         validateOnBlur: () => validate(data),
       })}
     </form>
