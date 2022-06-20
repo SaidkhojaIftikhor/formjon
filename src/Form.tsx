@@ -5,7 +5,6 @@ interface FormData<T> {
   errors: T;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   validateOnBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  onSetField?: (name: string, value: boolean) => void;
 }
 
 interface FormProps<T> {
@@ -15,6 +14,7 @@ interface FormProps<T> {
   onChange?: (data: T) => void;
   children: (formData: FormData<T>) => JSX.Element;
 }
+
 
 export function Form<T>({
   initialData,
@@ -76,16 +76,17 @@ export function Form<T>({
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setData({ ...data, [name]: value });
+    const { name, value,checked,type } = event.target;
+    if(type === "checkbox"){
+      setData((data) => ({ ...data, [name]: checked }));
+    }else{
+      setData({ ...data, [name]: value });
+    }
     onChange(data);
   };
 
-  
-  const handleSetField = (name: string, value: boolean) => {
-    setData({ ...data, [name]: value });
-  }
 
+ 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -93,7 +94,6 @@ export function Form<T>({
         values: data,
         errors,
         onChange: handleChange,
-        onSetField: handleSetField,
         validateOnBlur: () => validate(data),
       })}
     </form>
