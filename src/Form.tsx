@@ -70,7 +70,7 @@ export function Form<T>({
           filteredData[name] = data[name];
         }
       }
-
+      setErrors({} as T)
       onSubmit(filteredData);
     }
   };
