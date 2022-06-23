@@ -7,7 +7,7 @@ export function FormValidator(value: any) {
       return this;
     },
     string(message: string) {
-      if (!isNaN(value)) {
+      if (!Number.isNaN(value)) {
         throw new Error(message);
       }
       return this;
@@ -31,7 +31,7 @@ export function FormValidator(value: any) {
       return this;
     },
     number(message: string) {
-      if (isNaN(value)) {
+      if (Number.isNaN(value)) {
         throw new Error(message);
       }
       return this;

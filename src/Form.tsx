@@ -61,10 +61,10 @@ export function Form<T>({
     event.preventDefault();
 
     if (validate(data)) {
-      let filteredData = {} as T;
+      const filteredData = {} as T;
 
-      for (let name in data) {
-        let value = data[name] as any;
+      for (const name in data) {
+        const value = data[name] as any;
 
         if (value !== "") {
           filteredData[name] = data[name];
