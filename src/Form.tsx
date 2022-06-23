@@ -19,7 +19,7 @@ interface FormProps<T> {
 export function Form<T>({
   initialData,
   validations,
-  onSubmit,
+  onSubmit ,
   onChange = () => {},
   children,
 }: FormProps<T>): JSX.Element {
