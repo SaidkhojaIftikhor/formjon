@@ -31,7 +31,7 @@ export function Form<T>({
       (data: T): boolean => {
         let hasError = false;
 
-        for (let name in data) {
+        for (const name in data) {
           const validation = validations[name];
 
           if (validation) {
@@ -70,7 +70,7 @@ export function Form<T>({
           filteredData[name] = data[name];
         }
       }
-      setErrors({} as T)
+      setErrors({} as T);
       onSubmit(filteredData);
     }
   };
